@@ -11,7 +11,7 @@ Plugin 'ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline' "tabbar
 Plugin 'tpope/vim-fugitive' "git integration
-Plugin 'mileszs/ack.vim'
+"Plugin 'mileszs/ack.vim'
 Plugin 'bufexplorer.zip'
 "Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Shougo/neocomplete.vim'
@@ -21,9 +21,10 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'matchit.zip'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
-
+Plugin 'a.vim'
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'rking/ag.vim'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -56,6 +57,8 @@ set ignorecase
 set smartcase "ignores case if all lowercase when searching
 set incsearch "shows matches as you type
 nnoremap <silent><leader>hl :call Togglehlsearch()<CR>
+
+au FileType qf wincmd J "quickfix pane always takes up whole bottom
 
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>ev :e $MYVIMRC<CR>
@@ -97,8 +100,8 @@ colorscheme molokai
 "dont insert by default with o
 "nnoremap O O<ESC>
 "nnoremap o o<ESC>
-nnoremap <leader>o<ESC>
-nnoremap <leader>O<ESC>
+nnoremap <leader>o o<ESC>
+nnoremap <leader>O O<ESC>
 
 nnoremap Y y$ "make Y act like C and D
 
