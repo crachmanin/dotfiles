@@ -9,28 +9,39 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'ctrlp.vim' 
 "Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline' "tabbar
-Plugin 'tpope/vim-fugitive' "git integration
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-dispatch'
+Plugin 'airblade/vim-gitgutter'
 "Plugin 'mileszs/ack.vim'
 Plugin 'bufexplorer.zip'
 "Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Shougo/neocomplete.vim'
 "Plugin 'Shougo/unite.vim'
 "Plugin 'Shougo/vimfiler.vim'
-Plugin 'tpope/vim-vinegar'
 Plugin 'matchit.zip'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'a.vim'
 Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'rking/ag.vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'mattn/emmet-vim'
+Plugin 'klen/python-mode'
+Plugin 'fatih/vim-go'
+Plugin 'pangloss/vim-javascript'
+Plugin 'jgdavey/tslime.vim'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/neocomplete.vim'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
+
+"set rtp+=/usr/local/Cellar/fzf/0.10.1 "for fzf
 
 let root=getcwd()
 exec "set path=".root."/**"
@@ -43,7 +54,9 @@ set nu "Line numbers
 set tw=0
 set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 set smartindent
-"filetype indent on  " load filetype-specific indent files?
+"filetype settings in /usr/local/Cellar/macvim/HEAD/MacVim.app/Contents/Resources/vim/runtime/syntax
+filetype indent on  "comment this out if you want only tabs ie no spaces when indenting
+"actually not sure, need to figure this out
 set laststatus=2
 set hidden "close buffers without needing to save
 
@@ -73,6 +86,8 @@ nnoremap <leader>nt :NERDTreeFind<CR>
 nnoremap <leader>be :BufExplorer<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 
+let g:pymode_folding = 0
+
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#auto_completion_start_length = 3
@@ -93,6 +108,7 @@ set nowrap
 " ignore specific directories and files
 set wildignore+=*.min.* "don't really know how this works
 
+let t_Co=256
 set background=dark
 colorscheme molokai
 "colorscheme solarized
@@ -103,7 +119,13 @@ colorscheme molokai
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
 
-nnoremap Y y$ "make Y act like C and D
+"yank till end of line
+nnoremap Y y$
+
+"for inserting braces
+inoremap {<CR> {<Esc>o<Tab><CR>}<Esc>kxA
+"select all
+noremap <C-a> <Esc>ggVG
 
 "for autocentering on position shifts
 nnoremap G Gzz
