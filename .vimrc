@@ -43,9 +43,6 @@ filetype plugin on
 
 "set rtp+=/usr/local/Cellar/fzf/0.10.1 "for fzf
 
-let root=getcwd()
-exec "set path=".root."/**"
-
 let mapleader=","
 set cursorline " highlight current line
 "set cursorcolumn
@@ -54,9 +51,11 @@ set nu "Line numbers
 set tw=0
 set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 set smartindent
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 "filetype settings in /usr/local/Cellar/macvim/HEAD/MacVim.app/Contents/Resources/vim/runtime/syntax
-filetype indent on  "comment this out if you want only tabs ie no spaces when indenting
-"actually not sure, need to figure this out
+"additionally can add settings to ~/.vim/after or ~/.vim/indent
+"filetype indent off
 set laststatus=2
 set hidden "close buffers without needing to save
 
@@ -96,7 +95,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim "necessary for ctrlp
 let g:ctrlp_working_path_mode = 'w' "search within subdirs of current working directory
 let g:ctrlp_match_window_reversed = 0 "show files top to bottom
 let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth=40
+let g:ctrlp_max_depth=5
 let g:ctrlp_by_filename = 0 "search by filename by default
 let g:ctrlp_use_caching = 1
 
@@ -140,6 +139,9 @@ nnoremap <silent> <c-l> :wincmd l<CR>
 nnoremap <silent> <c-j> :wincmd j<CR>
 nnoremap <silent> <c-k> :wincmd k<CR>
 
+nnoremap <Leader>tp :tabprevious<CR>
+nnoremap <Leader>tn :tabnext<CR>
+
 " for swapping buffers in split windows
 nnoremap ˙ :wincmd H<CR>
 nnoremap ¬ :wincmd L<CR>
@@ -148,6 +150,7 @@ nnoremap ˚ :wincmd K<CR>
 
 "open current file in Finder, looks like command! will only define the command once
 command! Finder :!open %:p:h
+command! Subl :!subl %:p:h
 
 function! Togglehlsearch()
 	if &hlsearch == 0
